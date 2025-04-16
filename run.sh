@@ -18,7 +18,8 @@
     # ---------------------
     if [ "$#" -lt 1 ]; then
         echo "Usage: $0 <qrels_file> [trec_eval arguments]"
-        echo "Example: ./run.sh qrels.txt -m trec_all -q"
+        echo "Trec eval arguments:"
+        "$TREC_EVAL_BIN" -h
         exit 1
     fi
 
@@ -51,7 +52,7 @@
         echo "Evaluating $base..."
 
         "$TREC_EVAL_BIN" $ARGS "$QRELS_DIR/$QRELS_FILE" "$runfile" > "$EVALS_DIR/$base"
-        # mv "$runfile" "$RUNS_DIR/OLD/"
+        mv "$runfile" "$RUNS_DIR/old/"
     done
 
     echo "All evaluations complete. Results are saved in $EVALS_DIR/"
